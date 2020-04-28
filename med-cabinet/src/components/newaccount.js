@@ -2,14 +2,10 @@ import React, { useState, useEffect } from "react";
 import logo from "./images/logo.png";
 import axios from "axios";
 
-// const initialFormValues = {
-//   email: "",
-//   name: "",
-//   password: "",
-//   password2: "",
-// };
 
-// setting state
+function NewAccount(props) {
+
+  // setting state
 const [user, setUser] = useState({
   username: "",
   password: "",
@@ -43,52 +39,37 @@ const handleChanges = e => {
 };
 
 
+    const {
+        values,
+        onInputChange,
+        onCheckboxChange,
+    } = props
 
-function NewAccount() {
-  return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <img src={logo} />
-        <h1>New Account</h1>
-        {/* <label>
-          Email:&nbsp;
-          <input 
-            name="email" 
-            type="text" 
-          />
-        </label> */}
-        <label>
-          Name:&nbsp;
-          <input 
-          name="username" 
-          type="text" 
-          />
-        </label>
-        <label>
-          Password:&nbsp;
-          <input 
-          name="password" 
-          type="text" 
-          />
-        </label>
-        {/* <label>
-          Password again:&nbsp;
-          <input 
-          name="password2" 
-          type="text" 
-          />
-        </label> */}
-        {/* <label>
-          <input 
-          type="checkbox" 
-          name="terms" 
-          />
-          I agree with terms
-        </label> */}
-        <button>Create</button>
-      </form>
-    </div>
-  );
+    return (
+        <div>
+           <img src={logo} />
+           <h1>New Account</h1>
+           <label>Username:&nbsp;
+               <input 
+               value={values.username}
+               onChange={onInputChange}
+               name='username'
+               type='text'
+               />   
+           </label>
+           
+               <label>Password:&nbsp;
+               <input 
+               value={values.password}
+               onChange={onInputChange}
+               name='password'
+               type='text'
+               />
+               </label>
+               
+            <button onClick={onSubmit}>Create</button>
+        </div>
+    )
 }
 
 export default NewAccount;
