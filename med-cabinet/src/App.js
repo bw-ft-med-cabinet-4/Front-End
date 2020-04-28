@@ -4,8 +4,9 @@ import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Login from "./components/login"
-import NewAccount from './components/newaccount'
+import Login from "./components/Login";
+import NewAccount from './components/NewAccount';
+import StrainList from './components/StrainList';
 
 const register = 'https://medcabinetbackend.herokuapp.com/api/register'
 const login = 'https://medcabinetbackend.herokuapp.com/api/login'
@@ -106,6 +107,7 @@ const onSubmitLogin = evt => {
   return (
     <Router>
       <div className="App">
+
         <ProtectedRoute />
 
         <Login 
