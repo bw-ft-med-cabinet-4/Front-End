@@ -4,12 +4,12 @@ import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
-import login from "./components/Login";
+import Login from "./components/Login";
 import NewAccount from './components/NewAccount';
 import StrainList from './components/StrainList';
 
 const register = 'https://medcabinetbackend.herokuapp.com/api/register'
- login = 'https://medcabinetbackend.herokuapp.com/api/login'
+const login = 'https://medcabinetbackend.herokuapp.com/api/login'
 const initialFormValues={
   username: '',
   password: '',
@@ -110,11 +110,15 @@ const onSubmitLogin = evt => {
         <ProtectedRoute path='/strainlist' component={StrainList}/>
 
         <Login 
+        exact path="/" 
+        component={Login}
         values={formValues}
         onInputChange={onInputChange}
         onSubmitLogin={onSubmitLogin}
         />
         <NewAccount 
+        exact path="/" 
+        component={NewAccount}
         values ={formValues}
         onInputChange={onInputChange}
         onCheckboxChange={onCheckboxChange}

@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {StrainContext} from '../context/StrainContext';
 import axiosWithAuth from '../utils/axiosWithAuth';
 
