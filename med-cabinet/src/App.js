@@ -13,6 +13,7 @@ const login = 'https://medcabinetbackend.herokuapp.com/api/login'
 
 
 const initialFormValues = {
+
   username: '',
   password: '',
   username2: '',
@@ -158,7 +159,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <ProtectedRoute />
+        <ProtectedRoute path='/strainlist' component={StrainList}/>
 
         <Login
           values={formValues}

@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
-import logo from "./images/logo.png"
+import logo from "./images/logo.png";
+import axios from 'axios';
 
-
+const initialFormValues = {
+  email: "",
+  password: "",
+};
 
 function Login(props) {
 

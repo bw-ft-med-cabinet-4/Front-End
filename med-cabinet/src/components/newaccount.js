@@ -1,9 +1,43 @@
 import React, { useState, useEffect } from "react";
-import logo from "./images/logo.png"
-
+import logo from "./images/logo.png";
+import axios from "axios";
 
 
 function NewAccount(props) {
+
+  // setting state
+const [user, setUser] = useState({
+  username: "",
+  password: "",
+});
+
+// on submit
+const onSubmit = (e) => {
+  e.preventDefault();
+  axios
+    .post("https://medcabinetbackend.herokuapp.com/api/register", user)
+    .then((res) => {
+      setUser({
+        ...user,
+        username: "",
+        password: "",
+      });
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log("The data was not returned", err);
+    });
+};
+
+//on change handler
+const handleChanges = e => {
+  e.preventDefault();
+  setUser({
+    ...user,
+    [e.target.name]: e.target.value,
+  });
+};
+
 
     const {
         values,
@@ -12,6 +46,7 @@ function NewAccount(props) {
         onSubmit,
         disabled,
         errors,
+
     } = props
 
     return (
