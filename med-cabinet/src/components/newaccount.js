@@ -43,10 +43,18 @@ const handleChanges = e => {
         values,
         onInputChange,
         onCheckboxChange,
+        onSubmit,
+        disabled,
+        errors,
+
     } = props
 
     return (
         <div>
+            <div>
+                {errors.username}<br></br>
+                {errors.password}
+            </div>
            <img src={logo} />
            <h1>New Account</h1>
            <label>Username:&nbsp;
@@ -63,11 +71,11 @@ const handleChanges = e => {
                value={values.password}
                onChange={onInputChange}
                name='password'
-               type='text'
+               type='password'
                />
                </label>
                
-            <button onClick={onSubmit}>Create</button>
+            <button onClick={onSubmit} disabled={disabled}>Create</button>
         </div>
     )
 }

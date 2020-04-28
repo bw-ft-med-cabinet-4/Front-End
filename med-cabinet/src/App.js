@@ -15,31 +15,53 @@ const initialFormValues={
   password: '',
   username2: '',
   password2: '',
-  
+
 }
 
-const initialFormErrors={
+const initialFormErrors = {
   username: '',
   password: '',
-  
+  username2: '',
+  password2: '',
+
 }
+
+const formSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(3, 'username must have at least 3 characters!')
+    .required('username is required!'),
+  password: yup
+    .string()
+    .min(3, 'password must have at least 3 characters!')
+    .required('password is required!'),
+  username2: yup
+    .string()
+    .min(3, 'username must have at least 3 characters!')
+    .required('username is required!'),
+  password2: yup
+    .string()
+    .min(3, 'password must have at least 3 characters!')
+    .required('password is required!'),
+
+})
 
 function App() {
   const [users, setUsers] = useState([])
   const [formValues, setFormValues] = useState(initialFormValues)
 
-  const [formDisabled, setFormDisabled]= useState(true)
+  const [formDisabled, setFormDisabled] = useState(true)
 
-  const [formErrors ,setFormErrors] = useState(initialFormErrors)
-///// new account page post
+  const [formErrors, setFormErrors] = useState(initialFormErrors)
+  ///// new account page post
   const postRegister = user => {
     axios.post(register, user)
-    .then(res => {
-      setUsers([...users, res.data])
-    })
-    .catch(err => {
-      console.log('error')
-    })
+      .then(res => {
+        setUsers([...users, res.data])
+      })
+      .catch(err => {
+        console.log('error')
+      })
   }
 
   const onSubmit = evt => {
@@ -47,47 +69,74 @@ function App() {
 
     const newUser = {
       username: formValues.username,
-      
+
       password: formValues.password,
-      
+
 
     }
     postRegister(newUser)
     setFormValues(initialFormValues)
 
   }
-///// login page post
-const postLogin = user => {
-  axios.post(login, user)
-  .then(res => {
-    setUsers([...users, res.data])
-  })
-  .catch(err => {
-    console.log('error')
-  })
-}
+  ///// login page post
+  const postLogin = user => {
+    axios.post(login, user)
+      .then(res => {
+        setUsers([...users, res.data])
+      })
+      .catch(err => {
+        console.log('error')
+      })
+  }
 
-const onSubmitLogin = evt => {
-  evt.preventDefault()
+  const onSubmitLogin = evt => {
+    evt.preventDefault()
 
-  const user = {
-    username: formValues.username2,
-    
-    password: formValues.password2,
-    
+    const user = {
+      username: formValues.username2,
+
+      password: formValues.password2,
+
+
+    }
+    postLogin(user)
+    setFormValues(initialFormValues)
 
   }
-  postLogin(user)
-  setFormValues(initialFormValues)
-
-}
 
 
-////////////////////////////////////////////////
+  ////////////////////////////////////////////////
+  useEffect(() => {
+
+    formSchema.isValid(formValues)
+      .then(valid => {
+        setFormDisabled(!valid)
+      })
+  }, [formValues])
+
 
   const onInputChange = evt => {
+
     const name = evt.target.name
     const value = evt.target.value
+
+    yup
+      .reach(formSchema, name)
+      .validate(value)
+      .then(valid => {
+
+        setFormErrors({
+          ...formErrors,
+          [name]: '',
+        })
+      })
+      .catch(err => {
+
+        setFormErrors({
+          ...formErrors,
+          [name]: err.errors[0]
+        })
+      })
 
     setFormValues({
       ...formValues,
@@ -96,7 +145,7 @@ const onSubmitLogin = evt => {
   }
 
   const onCheckboxChange = evt => {
-    const {name} = evt.target
+    const { name } = evt.target
     const isChecked = evt.target.isChecked
 
     setFormValues({
