@@ -4,8 +4,8 @@ import axios from "axios";
 import logo from "./logo.svg";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Login from "./components/Login"
-import NewAccount from './components/NewAccount'
+import Login from "./components/Login";
+import NewAccount from './components/NewAccount';
 
 function App() {
   return (
