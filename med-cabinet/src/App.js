@@ -165,6 +165,8 @@ function App() {
         values={formValues}
         onInputChange={onInputChange}
         onSubmitLogin={onSubmitLogin}
+        disabled={formDisabled}
+        errors={formErrors}
         />
         <NewAccount 
         exact path="/" 
@@ -173,6 +175,8 @@ function App() {
         onInputChange={onInputChange}
         onCheckboxChange={onCheckboxChange}
         onSubmit={onSubmit}
+        disabled={formDisabled}
+        errors={formErrors}
         />
       </div>
     </Router>
