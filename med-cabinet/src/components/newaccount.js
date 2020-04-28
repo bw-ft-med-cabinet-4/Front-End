@@ -9,11 +9,17 @@ function NewAccount(props) {
         values,
         onInputChange,
         onCheckboxChange,
-        onSubmit
+        onSubmit,
+        disabled,
+        errors,
     } = props
 
     return (
         <div>
+            <div>
+                {errors.username}<br></br>
+                {errors.password}
+            </div>
            <img src={logo} />
            <h1>New Account</h1>
            <label>Username:&nbsp;
@@ -30,11 +36,11 @@ function NewAccount(props) {
                value={values.password}
                onChange={onInputChange}
                name='password'
-               type='text'
+               type='password'
                />
                </label>
                
-            <button onClick={onSubmit}>Create</button>
+            <button onClick={onSubmit} disabled={disabled}>Create</button>
         </div>
     )
 }

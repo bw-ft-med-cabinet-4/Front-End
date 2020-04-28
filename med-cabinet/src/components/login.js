@@ -8,11 +8,16 @@ function Login(props) {
     const{
         values,
         onInputChange,
-        onSubmitLogin
+        onSubmitLogin,
+        errors,
+        disabled
     }= props
     return (
         <div>
-           
+            <div>
+                {errors.username2}<br></br>
+                {errors.password2}
+                </div>
            <img src={logo} />
            <h1>Log In</h1>
            <label>Username:&nbsp;
@@ -28,10 +33,10 @@ function Login(props) {
                value={values.password2}
                onChange={onInputChange}
                name='password2'
-               type='text'
+               type='password'
                />
                </label>
-            <button onClick={onSubmitLogin}>Log In</button>
+            <button onClick={onSubmitLogin} disabled={disabled}>Log In</button>
         </div>
     )
 }
