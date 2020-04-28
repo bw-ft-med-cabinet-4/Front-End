@@ -1,48 +1,40 @@
 import React, { useState, useEffect } from "react";
 import logo from "./images/logo.png"
 
-const initialFormValues={
-    email: '',
-    name: '',
-    password: '',
-    password2: ''
-}
 
-function NewAccount() {
+
+function NewAccount(props) {
+
+    const {
+        values,
+        onInputChange,
+        onCheckboxChange,
+        onSubmit
+    } = props
+
     return (
         <div>
            <img src={logo} />
            <h1>New Account</h1>
-           <label>Email:&nbsp;
+           <label>Username:&nbsp;
                <input 
-               name='email'
+               value={values.username}
+               onChange={onInputChange}
+               name='username'
                type='text'
                />   
            </label>
-           <label>Name:&nbsp;
-               <input 
-               name='name'
-               type='text'
-               />
-               </label>
+           
                <label>Password:&nbsp;
                <input 
+               value={values.password}
+               onChange={onInputChange}
                name='password'
                type='text'
                />
                </label>
-               <label>Password again:&nbsp;
-               <input 
-               name='password2'
-               type='text'
-               />
-               </label>
-                <label><input
-                type="checkbox"
-                name="terms"
-                />I agree with terms
-                </label>
-            <button>Create</button>
+               
+            <button onClick={onSubmit}>Create</button>
         </div>
     )
 }
