@@ -12,6 +12,8 @@ const login = 'https://medcabinetbackend.herokuapp.com/api/login'
 const initialFormValues={
   username: '',
   password: '',
+  username2: '',
+  password2: '',
   
 }
 
@@ -28,7 +30,7 @@ function App() {
   const [formDisabled, setFormDisabled]= useState(true)
 
   const [formErrors ,setFormErrors] = useState(initialFormErrors)
-
+///// new account page post
   const postRegister = user => {
     axios.post(register, user)
     .then(res => {
@@ -53,6 +55,34 @@ function App() {
     setFormValues(initialFormValues)
 
   }
+///// login page post
+const postLogin = user => {
+  axios.post(login, user)
+  .then(res => {
+    setUsers([...users, res.data])
+  })
+  .catch(err => {
+    console.log('error')
+  })
+}
+
+const onSubmitLogin = evt => {
+  evt.preventDefault()
+
+  const user = {
+    username: formValues.username2,
+    
+    password: formValues.password2,
+    
+
+  }
+  postLogin(user)
+  setFormValues(initialFormValues)
+
+}
+
+
+////////////////////////////////////////////////
 
   const onInputChange = evt => {
     const name = evt.target.name
@@ -78,7 +108,11 @@ function App() {
       <div className="App">
         <ProtectedRoute />
 
-        <Login />
+        <Login 
+        values={formValues}
+        onInputChange={onInputChange}
+        onSubmitLogin={onSubmitLogin}
+        />
         <NewAccount 
         values ={formValues}
         onInputChange={onInputChange}
