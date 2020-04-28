@@ -3,25 +3,35 @@ import logo from "./images/logo.png"
 
 
 
-function Login() {
+function Login(props) {
+
+    const{
+        values,
+        onInputChange,
+        onSubmitLogin
+    }= props
     return (
         <div>
            
            <img src={logo} />
            <h1>Log In</h1>
-           <label>Email:&nbsp;
+           <label>Username:&nbsp;
                <input 
-               name='email'
+               value={values.username2}
+               onChange={onInputChange}
+               name='username2'
                type='text'
                />   
            </label>
            <label>Password:&nbsp;
                <input 
-               name='password'
+               value={values.password2}
+               onChange={onInputChange}
+               name='password2'
                type='text'
                />
                </label>
-            <button>Log In</button>
+            <button onClick={onSubmitLogin}>Log In</button>
         </div>
     )
 }
