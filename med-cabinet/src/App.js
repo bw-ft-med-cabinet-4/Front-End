@@ -1,19 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
+import * as yup from 'yup';
 import logo from "./logo.svg";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Login from "./components/Login"
-import NewAccount from './components/NewAccount'
-import * as yup from "yup";
+import Login from "./components/Login";
+import NewAccount from './components/NewAccount';
+import StrainList from './components/StrainList';
 
 const register = 'https://medcabinetbackend.herokuapp.com/api/register'
 const login = 'https://medcabinetbackend.herokuapp.com/api/login'
-
-
-const initialFormValues = {
-
+const initialFormValues={
   username: '',
   password: '',
   username2: '',
@@ -161,20 +159,20 @@ function App() {
       <div className="App">
         <ProtectedRoute path='/strainlist' component={StrainList}/>
 
-        <Login
-          values={formValues}
-          onInputChange={onInputChange}
-          onSubmitLogin={onSubmitLogin}
-          disabled={formDisabled}
-          errors={formErrors}
+        <Login 
+        exact path="/" 
+        component={Login}
+        values={formValues}
+        onInputChange={onInputChange}
+        onSubmitLogin={onSubmitLogin}
         />
-        <NewAccount
-          values={formValues}
-          onInputChange={onInputChange}
-          onCheckboxChange={onCheckboxChange}
-          onSubmit={onSubmit}
-          disabled={formDisabled}
-          errors={formErrors}
+        <NewAccount 
+        exact path="/" 
+        component={NewAccount}
+        values ={formValues}
+        onInputChange={onInputChange}
+        onCheckboxChange={onCheckboxChange}
+        onSubmit={onSubmit}
         />
       </div>
     </Router>
