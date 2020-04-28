@@ -16,22 +16,15 @@ function NewAccount(props) {
         <div>
            <img src={logo} />
            <h1>New Account</h1>
-           <label>Email:&nbsp;
+           <label>Username:&nbsp;
                <input 
-               value={values.email}
+               value={values.username}
                onChange={onInputChange}
-               name='email'
+               name='username'
                type='text'
                />   
            </label>
-           <label>Name:&nbsp;
-               <input 
-               value={values.name}
-               onChange={onInputChange}
-               name='name'
-               type='text'
-               />
-               </label>
+           
                <label>Password:&nbsp;
                <input 
                value={values.password}
@@ -40,21 +33,7 @@ function NewAccount(props) {
                type='text'
                />
                </label>
-               <label>Password again:&nbsp;
-               <input 
-               value={values.password2}
-               onChange={onInputChange}
-               name='password2'
-               type='text'
-               />
-               </label>
-                <label><input
-                checked={values.checkbox}
-                onChange={onCheckboxChange}
-                type="checkbox"
-                name="terms"
-                />I agree with terms
-                </label>
+               
             <button onClick={onSubmit}>Create</button>
         </div>
     )

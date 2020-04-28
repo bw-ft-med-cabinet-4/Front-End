@@ -10,17 +10,15 @@ import NewAccount from './components/newaccount'
 const register = 'https://medcabinetbackend.herokuapp.com/api/register'
 const login = 'https://medcabinetbackend.herokuapp.com/api/login'
 const initialFormValues={
-  email: '',
-  name: '',
+  username: '',
   password: '',
-  password2: ''
+  
 }
 
 const initialFormErrors={
-  email: '',
-  name: '',
+  username: '',
   password: '',
-  password2: ''
+  
 }
 
 function App() {
@@ -45,10 +43,10 @@ function App() {
     evt.preventDefault()
 
     const newUser = {
-      email: formValues.email,
-      name: formValues.name,
+      username: formValues.username,
+      
       password: formValues.password,
-      password2:formValues.password2
+      
 
     }
     postRegister(newUser)
