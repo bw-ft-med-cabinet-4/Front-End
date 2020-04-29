@@ -1,26 +1,26 @@
-import React, {useContext, useEffect} from 'react';
-import {StrainContext} from '../../context/StrainContext';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import React, {useContext, useEffect, useState} from 'react';
+import { axiosWithAuth } from '../../utils/axiosWithAuth';
+// import { StrainContext } from '../../context/StrainContext';
 
 
 export const StrainList = () => {
-    const strains = useContext(StrainContext);
+    // const strains = useContext(StrainContext);
+    const [strainList, setStrainList] = useState([]);
 
     useEffect(() => {
         axiosWithAuth()
-            .get('http://localhost:5000/api/strains')
+            .get(`/strains`)
             .then(res => {
-                this.setState ({
-                    StrainList: res.data
-                })
+                console.log('made it here');
+                console.log(res);
             })
-            .catch(err => console.log([err]));
+            .catch(err => console.log(err));
     }, []);
 
     return (
         <div>
-            {console.log(strains)}
-            {strains.map((strain, index) => {
+            {/* {console.log(strains)} */}
+            {/* {strains.map((strain, index) => {
                 return (
                     <div key={index} class='cards'>
                         <p>{strain.id}</p>
@@ -31,7 +31,7 @@ export const StrainList = () => {
                         <p>Recommendation: {strain.recommendation}</p>
                     </div>
                 )
-            })}
+            })} */}
         </div>
     )
 }
