@@ -48,7 +48,7 @@ useEffect(() => {
 
 const onSubmit = (e) => {
   e.preventDefault();
-  axios()
+  axios
     .post("https://medcabinetbackend.herokuapp.com/api/register", user)
     .then((res) => {
       setUser({
@@ -61,6 +61,8 @@ const onSubmit = (e) => {
     .catch((err) => {
       console.log("The data was not returned", err);
     });
+
+    setFormValues(initialFormValues)
 };
 
 const handleChanges = evt => {
