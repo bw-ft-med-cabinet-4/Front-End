@@ -1,13 +1,50 @@
 import React, { useState, useEffect } from "react";
 import logo from "../images/logo.png";
 import axios from "axios";
+import * as yup from "yup";
+
+
+const formSchema = yup.object().shape({
+  username: yup
+    .string()
+    .min(3, 'username must have at least 3 characters!')
+    .required('username is required!'),
+  password: yup
+    .string()
+    .min(3, 'password must have at least 3 characters!')
+    .required('password is required!'),
+
+})
+
+
+
 
 // refactor to es6
 const NewAccount = props => {
+  const initialFormValues={
+    username: '',
+    password: '',
+  }
+  const initialFormErrors = {
+    username: '',
+    password: '',
+  }
 const [user, setUser] = useState({
   username: "",
   password: "",
 });
+const [formValues, setFormValues] = useState(initialFormValues)
+const [formDisabled, setFormDisabled] = useState(true)
+const [formErrors, setFormErrors] = useState(initialFormErrors)
+
+useEffect(() => {
+
+  formSchema.isValid(formValues)
+    .then(valid => {
+      setFormDisabled(!valid)
+    })
+}, [formValues])
+
 
 const onSubmit = (e) => {
   e.preventDefault();
@@ -26,37 +63,64 @@ const onSubmit = (e) => {
     });
 };
 
-const handleChanges = e => {
-  e.preventDefault();
+const handleChanges = evt => {
+
+  evt.preventDefault();
+  const ename = evt.target.name
+  const value =   evt.target.value
+
   setUser({
     ...user,
-    [e.target.name]: e.target.value,
+    [ename]: value,
   });
+
+
+  yup
+    .reach(formSchema, ename)
+    .validate(value)
+    .then(valid => {
+
+      setFormErrors({
+        ...formErrors,
+        [ename]: '',
+      })
+    })
+    .catch(err => {
+
+      setFormErrors({
+        ...formErrors,
+        [ename]: err.errors[0]
+      })
+    })
+
+  setFormValues({
+    ...formValues,
+    [ename]: value,
+  })
+
 };
+const onCheckboxChange = evt => {
+  const { name } = evt.target
+  const isChecked = evt.target.isChecked
 
+  setFormValues({
+    ...formValues
+  })
+}
 
-    const {
-        values,
-        onInputChange,
-        onCheckboxChange,
-        // onSubmit,
-        disabled,
-        errors,
-
-    } = props
 
     return (
-        <div>
-            <div>
-                {errors.username}<br></br>
-                {errors.password}
-            </div>
+        <div>            
            <img src={logo} />
+           <div>
+                {formErrors.username}<br></br>
+                {formErrors.password}
+            </div>
            <h1>New Account</h1>
            <label>Username:&nbsp;
                <input 
-               value={values.username}
-               onChange={onInputChange}
+               value={formValues.username}
+               onChange={handleChanges}
                name='username'
                type='text'
                />   
@@ -64,14 +128,14 @@ const handleChanges = e => {
            
                <label>Password:&nbsp;
                <input 
-               value={values.password}
-               onChange={onInputChange}
+               value={formValues.password}
+               onChange={handleChanges}
                name='password'
                type='password'
                />
                </label>
                
-            <button onClick={onSubmit} disabled={disabled}>Create</button>
+            <button onClick={onSubmit} disabled={formDisabled}>Create</button>
         </div>
     )
 }

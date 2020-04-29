@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components';
 // test context
 import StrainContext from '../../context/StrainContext';
+// logo import
+import logo from '../images/logo.png'
 
 // component
 const MainNav = () => {
@@ -17,7 +19,7 @@ const MainNav = () => {
         <>
             <Container>
                 <Menu>
-                    <Logo>Logo goes here</Logo>
+                    <Logo><img src={logo} /></Logo>
 
                     <ButtonList>
                         <Link to='/'><button>Link</button></Link>

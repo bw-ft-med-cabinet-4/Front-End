@@ -7,10 +7,13 @@ import styled from 'styled-components';
 // contexts
 import StrainContext from './context/StrainContext';
 // views
-    import AuthView from './views/auth/Auth';
+
     import Crud from './views/crud/Crud';
 // components 
     import MainNav from './components/menus/MainNav';
+    import Login from './components/auth/Login'
+    import NewAccount from "./components/auth/NewAccount"
+    
 
 // component
 const App = () => {
@@ -18,9 +21,11 @@ const App = () => {
         <>
         <StrainContext.Provider value={'test'}>
             <Route path='/' component={MainNav} />
-            <Route path='/auth' component={AuthView} />
+            <Route path='/newaccount' component={NewAccount} />
             <Route path='/crud' component={Crud} />
+            <Route path='/login' component={Login}/>
         </StrainContext.Provider>
+
         </>
     );
 }
