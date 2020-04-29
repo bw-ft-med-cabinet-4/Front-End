@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 function Login(props) {
-  const { values, onInputChange, onSubmitLogin, errors, disabled } = props;
+  // const { values, onInputChange, onSubmitLogin, errors, disabled } = props;
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -12,7 +12,7 @@ function Login(props) {
 
   const onSubmit = e => {
     e.preventDefault();
-    axios()
+    axios
         .post('https://medcabinetbackend.herokuapp.com/api/login', user)
         .then(res => {
           console.log(res)
@@ -23,36 +23,45 @@ function Login(props) {
         })
   }
 
+  const inputChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  }
+
   return (
     <div>
-      <div>
-        {errors.username2}
-        <br></br>
-        {errors.password2}
-      </div>
-      <img src={logo} />
-      <h1>Log In</h1>
-      <label>
-        Username:&nbsp;
-        <input
-          value={values.username2}
-          onChange={onInputChange}
-          name="username2"
-          type="text"
-        />
-      </label>
-      <label>
-        Password:&nbsp;
-        <input
-          value={values.password2}
-          onChange={onInputChange}
-          name="password2"
-          type="password"
-        />
-      </label>
-      <button onClick={onSubmitLogin} disabled={disabled}>
-        Log In
-      </button>
+      <form onSubmit={onSubmit}>
+        <div>
+          {/* {errors.username2} */}
+          <br></br>
+          {/* {errors.password2} */}
+        </div>
+        <img src={logo} />
+        <h1>Log In</h1>
+        <label>
+          Username:&nbsp;
+          <input
+            value={user.username}
+            onChange={inputChange}
+            name="username"
+            type="text"
+          />
+        </label>
+        <label>
+          Password:&nbsp;
+          <input
+            value={user.password}
+            onChange={inputChange}
+            name="password"
+            type="password"
+          />
+        </label>
+        <button type="submit">
+          Log In
+        </button>
+      </form>
     </div>
   );
 }

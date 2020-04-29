@@ -33,7 +33,7 @@ const MainNav = () => {
 
 // styled components
 const Container = styled.div`
-    background-color: green;
+    // background-color: green;
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
@@ -54,7 +54,7 @@ const Menu = styled.div`
 const Logo = styled.div`
     width: 20rem;
     height: 100%;
-    background-color: red;
+    // background-color: red;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;

@@ -1,5 +1,5 @@
-import {createContext} from 'react';
+import { createContext } from 'react';
 
-const StrainContext=createContext();
+const StrainContext = createContext();
 
 export default StrainContext;
