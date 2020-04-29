@@ -1,4 +1,5 @@
 import {createContext} from 'react';
 
-export const StrainContext=createContext();
-console.log(StrainContext)
+const StrainContext=createContext();
+
+export default StrainContext;

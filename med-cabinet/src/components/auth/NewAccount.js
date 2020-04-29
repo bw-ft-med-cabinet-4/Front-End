@@ -1,35 +1,31 @@
 import React, { useState, useEffect } from "react";
-import logo from "./images/logo.png";
+import logo from "../images/logo.png";
 import axios from "axios";
 
-
-function NewAccount(props) {
-
-  // setting state
+// refactor to es6
+const NewAccount = props => {
 const [user, setUser] = useState({
   username: "",
   password: "",
 });
 
-// on submit
 const onSubmit = (e) => {
   e.preventDefault();
-  axios
+  axios()
     .post("https://medcabinetbackend.herokuapp.com/api/register", user)
     .then((res) => {
       setUser({
         ...user,
-        username: "",
-        password: "",
+      [e.target.name]:[e.target.value]
       });
       console.log(res);
+      localStorage.setItem('token', res.data.token)
     })
     .catch((err) => {
       console.log("The data was not returned", err);
     });
 };
 
-//on change handler
 const handleChanges = e => {
   e.preventDefault();
   setUser({
