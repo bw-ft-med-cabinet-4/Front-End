@@ -1,51 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const GetSavedStrains = () => {
-  const [strain, setStrain] = useState({
-    userId: "",
-    strainId: "",
-  });
+  const [strains, setStrains] = useState([]);
 
-  const handleInput = (e) => {
-    setStrain({
-      ...strain,
-      [e.target.name]: e.target.value,
-    });
-    console.log(strain);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  // effects
+  useEffect(() => {
     axiosWithAuth()
-      .get("/saved", strain)
+    .get('/saved')
+    .then(res => {
+        console.log(res)
+        setStrains(res.data);
+    })
+    .catch(e => console.error(e))
+}, [])
+
+  const deleteStrain = (id) => {
+    axiosWithAuth()
+      .delete(`/saved/${id}`)
       .then((res) => {
         console.log(res);
       })
       .catch((err) => {
-        console.log("The data was not returned", err);
+        console.log(err);
       });
   };
 
   return (
-      <>
-        <form onSubmit={handleSubmit}>
-            <input
-                type='text'
-                name='user_id'
-                onChange={handleInput}
-            />
-            <input
-                type='text'
-                name='strain_id'
-                onChange={handleInput}
-            />
-            <button>View Saved Strains</button>
-        </form>
-      </>
-  )
+    <>
+      {console.log(strains)}
+      {strains.map((strain, index) => {
+        return (
+          <div className="cards" key={index}>
+            <p>{strain.id}</p>
+            <p>Strain Name: {strain.strain}</p>
+            <p>Effect: {strain.effect}</p>
+            <p>Flavor: {strain.flavor}</p>
+            <p>Description: {strain.description}</p>
+            <button onClick={() => deleteStrain(strain.id)}>
+              Delete
+            </button>
+          </div>
+        );
+      })}
+    </>
+  );
 };
 
 export default GetSavedStrains;

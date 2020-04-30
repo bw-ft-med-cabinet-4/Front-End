@@ -1,5 +1,6 @@
 // react
 import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 // router
 import { Link } from 'react-router-dom'
 // styled comps
@@ -15,6 +16,8 @@ const MainNav = () => {
     const strains = useContext(StrainContext)
     console.log('[CHECKING CONTEXT]', strains)
 
+    const history = useHistory();
+
     return (
         <>
             <Container>
@@ -22,10 +25,15 @@ const MainNav = () => {
                     <Logo><img src={logo} /></Logo>
 
                     <ButtonList>
-                        <Link to='/'><button>Link</button></Link>
-                        <Link to='/'><button>Link</button></Link>
-                        <Link to='/'><button>Link</button></Link>
-                        <Link to='/'><button>Link</button></Link>
+                        <Link to='/'><button>Home</button></Link>
+                        <Link to='/dashboard'><button>Dashboard</button></Link>
+                        {!!localStorage.getItem('token') && <Link to="/"><button onClick={(e) => {
+                            e.preventDefault();
+                            localStorage.clear();
+                            history.push(`/login`);
+                        }}>Logout</button></Link>}
+                        {!localStorage.getItem('token') && <Link to="/login"><button>Login</button></Link>}
+                        {!localStorage.getItem('token') && <Link to="/register"><button>Register</button></Link>}
                     </ButtonList>
                 </Menu>
             </Container>
@@ -41,6 +49,7 @@ const Container = styled.div`
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 11.5625rem;
 `
 
 const Menu = styled.div`
