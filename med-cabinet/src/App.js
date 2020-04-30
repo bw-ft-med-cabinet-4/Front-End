@@ -16,6 +16,9 @@ import StrainContext from './context/StrainContext';
     import ProtectedRoute from "./components/auth/ProtectedRoute"
     import StrainList from './components/auth/StrainList';
 
+    // temp register component
+    import Register from './components/auth/Register';
+
 
 // component
 const App = () => {
@@ -26,6 +29,9 @@ const App = () => {
             <Route path='/newaccount' component={NewAccount} />
             <Route path='/crud' component={Crud} />
             <Route path="/login" component={Login} />
+
+            {/* temp register component */}
+            <Route path='/register' component={Register} />
             
             {/* Make protected route */}
             <Route path="/strains" component={StrainList} />

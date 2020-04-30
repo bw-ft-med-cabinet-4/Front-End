@@ -7,6 +7,17 @@ export const StrainList = () => {
     const strains = useContext(StrainContext);
     const [strainList, setStrainList] = useState([]);
 
+    const saveStrain = (id) => {
+        axiosWithAuth()
+            .post(`/strains/${id}`)
+            .then(res => {
+                (console.log(res))
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     useEffect(() => {
         axiosWithAuth()
             .get('/strains')
@@ -29,7 +40,7 @@ export const StrainList = () => {
                         <p>Flavor: {strain.flavor}</p>
                         <p>Description: {strain.description}</p>
                         {/* <p>Recommendation: {strain.id.recommendation}</p> */}
-                        <button>Save</button>
+                        <button onClick={() => saveStrain(strain.id)}>Save</button>
                     </div>
                 )
             })}
