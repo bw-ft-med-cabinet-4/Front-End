@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../images/logo.png";
 import axios from "axios";
 import * as yup from "yup";
+import {useHistory} from 'react-router-dom'
 
 
 const formSchema = yup.object().shape({
@@ -21,6 +22,8 @@ const formSchema = yup.object().shape({
 
 // refactor to es6
 const NewAccount = props => {
+  const {push} = useHistory()
+
   const initialFormValues={
     username: '',
     password: '',
@@ -51,12 +54,15 @@ const onSubmit = (e) => {
   axios
     .post("https://medcabinetbackend.herokuapp.com/api/register", user)
     .then((res) => {
+      
       setUser({
         ...user,
-      [e.target.name]:[e.target.value]
+      [e.target.name]:e.target.value
       });
       console.log(res);
       localStorage.setItem('token', res.data.token)
+      
+      
     })
     .catch((err) => {
       console.log("The data was not returned", err);

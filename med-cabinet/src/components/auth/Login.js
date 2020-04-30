@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import logo from "../images/logo.png";
 import axios from "axios";
 import * as yup from "yup";
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
+import {useHistory} from "react-router-dom"
 
 
 const formSchema = yup.object().shape({
@@ -17,7 +19,7 @@ const formSchema = yup.object().shape({
 })
 
 function Login(props) {
-
+  const {push} = useHistory()
   const initialFormValues={
     username: '',
     password: '',
@@ -47,11 +49,12 @@ useEffect(() => {
 
   const onSubmit = e => {
     e.preventDefault();
-    axios
-        .post('https://medcabinetbackend.herokuapp.com/api/login', user)
+    axiosWithAuth()
+        .post('login', user)
         .then(res => {
           console.log(res)
           localStorage.setItem('token', res.data.token)
+          push('/crud')
         })
         .catch(err => {
             console.log('The data was not returned', err)
@@ -136,46 +139,11 @@ useEffect(() => {
       <button onClick={onSubmit} disabled={formDisabled}>
         Log In
       </button>
-  const inputChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value
+  
     })
-  }
+  })
 
-  return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <div>
-          {/* {errors.username2} */}
-          <br></br>
-          {/* {errors.password2} */}
-        </div>
-        <img src={logo} />
-        <h1>Log In</h1>
-        <label>
-          Username:&nbsp;
-          <input
-            value={user.username}
-            onChange={inputChange}
-            name="username"
-            type="text"
-          />
-        </label>
-        <label>
-          Password:&nbsp;
-          <input
-            value={user.password}
-            onChange={inputChange}
-            name="password"
-            type="password"
-          />
-        </label>
-        <button type="submit">
-          Log In
-        </button>
-      </form>
-
+  
     </div>
   );
 }
