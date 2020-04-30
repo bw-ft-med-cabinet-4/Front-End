@@ -23,8 +23,7 @@ const MainNav = () => {
 
                     <ButtonList>
                         <Link to='/'><button>Home</button></Link>
-                        <Link to='/'><button>Strains</button></Link>
-                        <Link to='/'><button>Dashboard</button></Link>
+                        <Link to='/dashboard'><button>Dashboard</button></Link>
                     </ButtonList>
                 </Menu>
             </Container>
