@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import logo from "../images/logo.png";
 import axios from "axios";
 import * as yup from "yup";
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 import {useHistory} from "react-router-dom"
 
 
@@ -29,6 +29,8 @@ function Login(props) {
     password: '',
   }
   
+
+  // const { values, onInputChange, onSubmitLogin, errors, disabled } = props;
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -58,6 +60,7 @@ useEffect(() => {
             console.log('The data was not returned', err)
         })
   }
+
 
   const handleChanges = evt => {
 
@@ -136,6 +139,11 @@ useEffect(() => {
       <button onClick={onSubmit} disabled={formDisabled}>
         Log In
       </button>
+  
+    })
+  })
+
+  
     </div>
   );
 }

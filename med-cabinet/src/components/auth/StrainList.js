@@ -1,20 +1,20 @@
-import React, {useContext, useEffect} from 'react';
-import {StrainContext} from '../../context/StrainContext';
-import axiosWithAuth from '../../utils/axiosWithAuth';
+import React, {useContext, useEffect, useState} from 'react';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
+import StrainContext  from '../../context/StrainContext';
 
 
 export const StrainList = () => {
     const strains = useContext(StrainContext);
+    const [strainList, setStrainList] = useState([]);
 
     useEffect(() => {
         axiosWithAuth()
-            .get('http://localhost:5000/api/strains')
+            .get('/strains', strains)
             .then(res => {
-                this.setState ({
-                    StrainList: res.data
-                })
+                console.log('made it here');
+                console.log(res);
             })
-            .catch(err => console.log([err]));
+            .catch(err => console.log(err));
     }, []);
 
     return (
@@ -24,11 +24,11 @@ export const StrainList = () => {
                 return (
                     <div key={index} class='cards'>
                         <p>{strain.id}</p>
-                        <p>Strain Name: {strain.name}</p>
-                        <p>Effect: {strain.effect}</p>
-                        <p>Flavor: {strain.flavor}</p>
-                        <p>Description: {strain.description}</p>
-                        <p>Recommendation: {strain.recommendation}</p>
+                        <p>Strain Name: {strain.id.name}</p>
+                        <p>Effect: {strain.id.effect}</p>
+                        <p>Flavor: {strain.id.flavor}</p>
+                        <p>Description: {strain.id.description}</p>
+                        <p>Recommendation: {strain.id.recommendation}</p>
                     </div>
                 )
             })}

@@ -119,3 +119,5 @@ const AuthView = props => {
   );
 }
 
+
+export default AuthView;

@@ -1,12 +1,12 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import axiosWithAuth from '../../utils/axiosWithAuth'
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 const AddStrain = () => {
     // hooks
     const [strain, setStrain] = useState({
-        user_id: '',
-        strain_id: ''
+        usersId: '',
+        strainsId: ''
     })
 
     // handlers
@@ -21,11 +21,12 @@ const AddStrain = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
-        axiosWithAuth.post('/strains', strain)
+        axiosWithAuth()
+        .post('/strains/:id')
         .then(res => {
             console.log(res)
         })
-        .catch(e => console.error(e))
+        .catch(err => console.error(err))
     }
     
     return (
@@ -37,14 +38,12 @@ const AddStrain = () => {
                     placeholder='user id'
                     onChange={handleInput}
                     />
-
                 <input 
                     type='text'
                     name='strain_id'
                     placeholder='strain id'
                     onChange={handleInput}
                 />
-
                 <button>submit</button>
             </form>
         </>

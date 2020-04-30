@@ -14,7 +14,8 @@ import StrainContext from './context/StrainContext';
     import Login from './components/auth/Login'
     import NewAccount from "./components/auth/NewAccount"
     import ProtectedRoute from "./components/auth/ProtectedRoute"
-    
+    import StrainList from './components/auth/StrainList';
+
 
 // component
 const App = () => {
@@ -23,8 +24,11 @@ const App = () => {
         <StrainContext.Provider value={'test'}>
             <Route path='/' component={MainNav} />
             <Route path='/newaccount' component={NewAccount} />
-            <ProtectedRoute path='/crud' component={Crud} />
-            <Route path='/login' component={Login}/>
+            <Route path='/crud' component={Crud} />
+            <Route path="/login" component={Login} />
+            
+            {/* Make protected route */}
+            <Route path="/strains" component={StrainList} />
         </StrainContext.Provider>
 
         </>
