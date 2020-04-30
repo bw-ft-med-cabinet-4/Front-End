@@ -3,26 +3,24 @@ import styled from "styled-components";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const GetSavedStrains = () => {
-  const [strain, setStrain] = useState({
-    userId: "",
-    strainId: "",
-  });
+  const [strains, setStrains] = useState([]);
 
   const handleInput = (e) => {
-    setStrain({
-      ...strain,
+    setStrains({
+      ...strains,
       [e.target.name]: e.target.value,
     });
-    console.log(strain);
+    console.log(strains);
   };
 
   const handleChange = (e) => {
     e.preventDefault();
 
     axiosWithAuth()
-      .get("/saved", strain)
+      .get("/saved")
       .then((res) => {
         console.log(res);
+        setStrains(res.data)
       })
       .catch((err) => {
         console.log("The data was not returned", err);
@@ -42,8 +40,8 @@ const GetSavedStrains = () => {
 
   return (
     <>
-      {console.log(strain)}
-      {GetSavedStrains.map((strain, index) => {
+      {console.log(strains)}
+      {strains.map((strain, index) => {
         return (
           <div className="cards" key={index}>
             <p>{strain.id}</p>

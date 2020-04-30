@@ -22,10 +22,9 @@ const MainNav = () => {
                     <Logo><img src={logo} /></Logo>
 
                     <ButtonList>
-                        <Link to='/'><button>Link</button></Link>
-                        <Link to='/'><button>Link</button></Link>
-                        <Link to='/'><button>Link</button></Link>
-                        <Link to='/'><button>Link</button></Link>
+                        <Link to='/'><button>Home</button></Link>
+                        <Link to='/'><button>Strains</button></Link>
+                        <Link to='/'><button>Dashboard</button></Link>
                     </ButtonList>
                 </Menu>
             </Container>
