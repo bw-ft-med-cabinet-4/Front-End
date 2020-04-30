@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const GetSavedStrains = () => {
   const [strains, setStrains] = useState([]);
+
+  // effects
+  useEffect(() => {
+    axiosWithAuth()
+    .get('/saved')
+    .then(res => {
+        console.log(res)
+    })
+    .catch(e => console.error(e))
+}, [])
 
   const handleInput = (e) => {
     setStrains({
@@ -11,20 +21,6 @@ const GetSavedStrains = () => {
       [e.target.name]: e.target.value,
     });
     console.log(strains);
-  };
-
-  const handleChange = (e) => {
-    e.preventDefault();
-
-    axiosWithAuth()
-      .get("/saved")
-      .then((res) => {
-        console.log(res);
-        setStrains(res.data)
-      })
-      .catch((err) => {
-        console.log("The data was not returned", err);
-      });
   };
 
   const viewSaved = (id) => {
