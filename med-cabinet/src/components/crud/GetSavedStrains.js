@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import {axiosWithAuth} from "../../utils/axiosWithAuth";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
-const DeleteStrain = () => {
+const GetSavedStrains = () => {
   const [strain, setStrain] = useState({
-    usersId: "",
-    strainsId: "",
+    userId: "",
+    strainId: "",
   });
 
-  const handleInput = e => {
+  const handleInput = (e) => {
     setStrain({
       ...strain,
       [e.target.name]: e.target.value,
@@ -20,7 +20,7 @@ const DeleteStrain = () => {
     e.preventDefault();
 
     axiosWithAuth()
-      .delete("/saved/:id", strain)
+      .get("/saved", strain)
       .then((res) => {
         console.log(res);
       })
@@ -35,19 +35,17 @@ const DeleteStrain = () => {
             <input
                 type='text'
                 name='user_id'
-                placeholder='user id'
                 onChange={handleInput}
             />
             <input
                 type='text'
                 name='strain_id'
-                placeholder='strain id'
                 onChange={handleInput}
             />
-            <button>Delete</button>
+            <button>View Saved Strains</button>
         </form>
       </>
   )
 };
 
-export default DeleteStrain;
+export default GetSavedStrains;
