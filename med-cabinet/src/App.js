@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import StrainContext from './context/StrainContext';
 // views
     import Dashboard from './views/home/Dashboard';
+    import UserDashboard from './views/userDashboard/UserDashboard';
     import Crud from './views/crud/Crud';
 // components 
     import MainNav from './components/menus/MainNav';
@@ -27,6 +28,7 @@ const App = () => {
         <StrainContext.Provider value={'test'}>
             <Route path='/' component={MainNav} />
             <Route exact path='/' component={Dashboard} />
+            <Route exact path='/dashboard' component={UserDashboard} />
             <Route path='/newaccount' component={NewAccount} />
             <Route path="/login" component={Login} />
 
