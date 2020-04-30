@@ -36,7 +36,6 @@ body {
  line-height: 1;
  box-sizing: border-box;
  font-size: 62.5%;
- font-size: 1rem;
 }
 ol, ul {
  list-style: none;
@@ -52,6 +51,10 @@ q:before, q:after {
 table {
  border-collapse: collapse;
  border-spacing: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;700;900&display=swap');
+html {
+    font-family: 'Muli', sans-serif;
 }
 `
 

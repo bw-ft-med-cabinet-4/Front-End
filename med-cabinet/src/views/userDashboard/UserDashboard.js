@@ -19,6 +19,7 @@ const Container = styled.div`
     max-width: 1400px;
     height: 50rem; // temp
     background-color: green;
+    margin: 0 auto;
 `
 
 export default UserDashboard;

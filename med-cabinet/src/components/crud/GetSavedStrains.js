@@ -11,21 +11,14 @@ const GetSavedStrains = () => {
     .get('/saved')
     .then(res => {
         console.log(res)
+        setStrains(res.data);
     })
     .catch(e => console.error(e))
 }, [])
 
-  const handleInput = (e) => {
-    setStrains({
-      ...strains,
-      [e.target.name]: e.target.value,
-    });
-    console.log(strains);
-  };
-
-  const viewSaved = (id) => {
+  const deleteStrain = (id) => {
     axiosWithAuth()
-      .post(`/strains/${id}`)
+      .delete(`/saved/${id}`)
       .then((res) => {
         console.log(res);
       })
@@ -41,13 +34,12 @@ const GetSavedStrains = () => {
         return (
           <div className="cards" key={index}>
             <p>{strain.id}</p>
-            <p>{strain.id}</p>
             <p>Strain Name: {strain.strain}</p>
             <p>Effect: {strain.effect}</p>
             <p>Flavor: {strain.flavor}</p>
             <p>Description: {strain.description}</p>
-            <button onClick={() => viewSaved(strain.id)}>
-              View Saved Strains
+            <button onClick={() => deleteStrain(strain.id)}>
+              Delete
             </button>
           </div>
         );

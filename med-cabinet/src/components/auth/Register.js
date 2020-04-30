@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 export default function Register() {
+
+    const history = useHistory();
 
     const [user, setUser] = useState({
         username: '',
@@ -19,6 +22,7 @@ export default function Register() {
         axios.post(`https://medcabinetbackend.herokuapp.com/api/register`, user)
             .then(res => {
                 console.log(res);
+                history.push(`/login`);
             })
             .catch(err => {
                 console.log(err);

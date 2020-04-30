@@ -12,7 +12,8 @@ import StrainContext from './context/StrainContext';
     import Crud from './views/crud/Crud';
 // components 
     import MainNav from './components/menus/MainNav';
-    import Login from './components/auth/Login'
+    // import OldLogin from './components/auth/OldLogin'
+    import Login from './components/auth/Login';
     import NewAccount from "./components/auth/NewAccount"
     import ProtectedRoute from "./components/auth/ProtectedRoute"
     import StrainList from './components/auth/StrainList';
