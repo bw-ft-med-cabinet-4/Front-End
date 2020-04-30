@@ -9,7 +9,7 @@ export const StrainList = () => {
 
     useEffect(() => {
         axiosWithAuth()
-            .get('/strains')
+            .get('/strains', strains)
             .then(res => {
                 console.log('made it here');
                 console.log(res);

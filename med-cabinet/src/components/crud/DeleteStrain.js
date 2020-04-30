@@ -20,7 +20,7 @@ const DeleteStrain = () => {
     e.preventDefault();
 
     axiosWithAuth()
-      .delete("/strains", strain)
+      .delete("/saved/:id", strain)
       .then((res) => {
         console.log(res);
       })

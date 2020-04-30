@@ -21,7 +21,8 @@ const AddStrain = () => {
     const handleSubmit = e => {
         e.preventDefault()
 
-        axiosWithAuth.post('/saved', strain)
+        axiosWithAuth()
+        .post('/strains/:id')
         .then(res => {
             console.log(res)
         })
