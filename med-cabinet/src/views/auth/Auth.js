@@ -8,31 +8,20 @@ import NewAccount from '../../components/auth/NewAccount';
 
 const register = 'https://medcabinetbackend.herokuapp.com/api/register'
 const login = 'https://medcabinetbackend.herokuapp.com/api/login'
-const initialFormValues={
-  username: '',
-  password: '',
+
+const initialLoginValues={
+  username2: '',
+  password2: '',
+}
+
+
+const initialLoginErrors={
   username2: '',
   password2: '',
 
 }
 
-const initialFormErrors = {
-  username: '',
-  password: '',
-  username2: '',
-  password2: '',
-
-}
-
-const formSchema = yup.object().shape({
-  username: yup
-    .string()
-    .min(3, 'username must have at least 3 characters!')
-    .required('username is required!'),
-  password: yup
-    .string()
-    .min(3, 'password must have at least 3 characters!')
-    .required('password is required!'),
+const  loginSchema = yup.object().shape({  
   username2: yup
     .string()
     .min(3, 'username must have at least 3 characters!')
@@ -40,9 +29,7 @@ const formSchema = yup.object().shape({
   password2: yup
     .string()
     .min(3, 'password must have at least 3 characters!')
-    .required('password is required!'),
-
-})
+    .required('password is required!'),})
 
 const AuthView = props => {
   const [users, setUsers] = useState([])
@@ -51,55 +38,8 @@ const AuthView = props => {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
   
   ///// new account page post
-  const postRegister = user => {
-    axios.post(register, user)
-      .then(res => {
-        setUsers([...users, res.data])
-      })
-      .catch(err => {
-        console.log('error')
-      })
-  }
-
-  const onSubmit = evt => {
-    evt.preventDefault()
-
-    const newUser = {
-      username: formValues.username,
-
-      password: formValues.password,
 
 
-    }
-    postRegister(newUser)
-    setFormValues(initialFormValues)
-
-  }
-  ///// login page post
-  const postLogin = user => {
-    axios.post(login, user)
-      .then(res => {
-        setUsers([...users, res.data])
-      })
-      .catch(err => {
-        console.log('error')
-      })
-  }
-
-  const onSubmitLogin = evt => {
-    evt.preventDefault()
-
-    const user = {
-      username: formValues.username2,
-
-      password: formValues.password2,
-
-
-    }
-    postLogin(user)
-    setFormValues(initialFormValues)
-
-  }
 
 
   ////////////////////////////////////////////////
@@ -155,7 +95,7 @@ const AuthView = props => {
       <div className="App">
 
         <Login 
-        exact path="/" 
+        exact path="/login" 
         component={Login}
         values={formValues}
         onInputChange={onInputChange}
@@ -163,7 +103,7 @@ const AuthView = props => {
         disabled={formDisabled}
         errors={formErrors}
         />
-
+        
         <NewAccount 
         exact path="/" 
         component={NewAccount}
@@ -179,4 +119,3 @@ const AuthView = props => {
   );
 }
 
-export default AuthView;
