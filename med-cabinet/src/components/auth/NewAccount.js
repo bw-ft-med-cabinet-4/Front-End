@@ -3,6 +3,7 @@ import logo from "../images/logo.png";
 import axios from "axios";
 import * as yup from "yup";
 import {useHistory} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 
 const formSchema = yup.object().shape({
@@ -107,14 +108,14 @@ const handleChanges = evt => {
   })
 
 };
-const onCheckboxChange = evt => {
-  const { name } = evt.target
-  const isChecked = evt.target.isChecked
+// const onCheckboxChange = evt => {
+//   const { name } = evt.target
+//   const isChecked = evt.target.isChecked
 
-  setFormValues({
-    ...formValues
-  })
-}
+//   setFormValues({
+//     ...formValues
+//   })
+// }
 
 
     return (
@@ -143,8 +144,10 @@ const onCheckboxChange = evt => {
                />
                </label>
                
-            <button onClick={onSubmit} disabled={formDisabled}>Create</button>
+            <button onClick={onSubmit} disabled={formDisabled}>Create</button><br></br>
+            <Link to='/login'>Click here to Login</Link>
         </div>
+        
     )
 }
 

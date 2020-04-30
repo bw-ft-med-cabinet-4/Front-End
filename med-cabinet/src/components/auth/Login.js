@@ -4,6 +4,7 @@ import axios from "axios";
 import * as yup from "yup";
 import {axiosWithAuth} from '../../utils/axiosWithAuth';
 import {useHistory} from "react-router-dom"
+import { Link } from 'react-router-dom';
 
 
 const formSchema = yup.object().shape({
@@ -99,14 +100,14 @@ useEffect(() => {
   
   };
 
-  const onCheckboxChange = evt => {
-    const { name } = evt.target
-    const isChecked = evt.target.isChecked
+  // const onCheckboxChange = evt => {
+  //   const { name } = evt.target
+  //   const isChecked = evt.target.isChecked
   
-    setFormValues({
-      ...formValues
-    })
-  }
+  //   setFormValues({
+  //     ...formValues
+  //   })
+  // }
 
 
   return (
@@ -138,10 +139,11 @@ useEffect(() => {
       </label>
       <button onClick={onSubmit} disabled={formDisabled}>
         Log In
-      </button>
+      </button><br></br>
+      <Link to='/newaccount'>Click here to register!</Link>
   
     })
-  })
+  {/* }) */}
 
   
     </div>
