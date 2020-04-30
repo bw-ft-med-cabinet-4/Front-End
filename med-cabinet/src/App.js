@@ -12,7 +12,8 @@ import StrainContext from './context/StrainContext';
 // components 
     import MainNav from './components/menus/MainNav';
     import Login from './components/auth/Login';
-    import Register from './components/auth/NewAccount';
+    // import Register from './components/auth/NewAccount';
+    import Register from './components/auth/Register';
 import StrainList from './components/auth/StrainList';
 
 // component
@@ -25,6 +26,7 @@ const App = () => {
             <Route path='/crud' component={Crud} />
             <Route path="/login" component={Login} />
             <Route path='/register' component={Register} />
+            {/* <Route path='/register' component={NewAccount} /> */}
             {/* Make protected route */}
             <Route path="/strains" component={StrainList} />
         </StrainContext.Provider>

@@ -47,11 +47,11 @@ const handleChanges = e => {
 
     return (
         <div>
-            <div>
+            {/* <div>
                 {errors.username}<br></br>
                 {errors.password}
-            </div>
-           <img src={logo} />
+            </div> */}
+           {/* <img src={logo} />
            <h1>New Account</h1>
            <label>Username:&nbsp;
                <input 
@@ -71,7 +71,7 @@ const handleChanges = e => {
                />
                </label>
                
-            <button onClick={onSubmit} disabled={disabled}>Create</button>
+            <button onClick={onSubmit} disabled={disabled}>Create</button> */}
         </div>
     )
 }

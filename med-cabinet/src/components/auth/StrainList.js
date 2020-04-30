@@ -9,9 +9,9 @@ export const StrainList = () => {
 
     useEffect(() => {
         axiosWithAuth()
-            .get('/strains', strains)
+            .get('/strains')
             .then(res => {
-                console.log('made it here');
+                setStrainList(res.data);
                 console.log(res);
             })
             .catch(err => console.log(err));
@@ -20,15 +20,16 @@ export const StrainList = () => {
     return (
         <div>
             {console.log(strains)}
-            {strains.map((strain, index) => {
+            {strainList.map((strain, index) => {
                 return (
-                    <div key={index} class='cards'>
+                    <div key={index} className='cards'>
                         <p>{strain.id}</p>
-                        <p>Strain Name: {strain.id.name}</p>
-                        <p>Effect: {strain.id.effect}</p>
-                        <p>Flavor: {strain.id.flavor}</p>
-                        <p>Description: {strain.id.description}</p>
-                        <p>Recommendation: {strain.id.recommendation}</p>
+                        <p>Strain Name: {strain.strain}</p>
+                        <p>Effect: {strain.effect}</p>
+                        <p>Flavor: {strain.flavor}</p>
+                        <p>Description: {strain.description}</p>
+                        {/* <p>Recommendation: {strain.id.recommendation}</p> */}
+                        <button>Save</button>
                     </div>
                 )
             })}
