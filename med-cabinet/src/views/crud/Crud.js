@@ -8,6 +8,7 @@ const Crud = () => {
             <h1>Crud view</h1>
 
             <AddStrain />
+            {/* <DeleteStrain /> */}
         </>
     )
 }

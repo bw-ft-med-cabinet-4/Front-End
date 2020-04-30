@@ -1,36 +1,36 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
-import axiosWithAuth from '../../utils/axiosWithAuth'
+import { axiosWithAuth } from '../../utils/axiosWithAuth'
 
 const AddStrain = () => {
     // hooks
-    const [strain, setStrain] = useState({
-        user_id: '',
-        strain_id: ''
-    })
+    // const [strain, setStrain] = useState({
+    //     usersId: '',
+    //     strainsId: ''
+    // })
 
     // handlers
-    const handleInput = e => {
-        setStrain({
-            ...strain,
-            [e.target.name] : e.target.value
-        })
-        console.log(strain)
-    }
+    // const handleInput = e => {
+    //     setStrain({
+    //         ...strain,
+    //         [e.target.name] : e.target.value
+    //     })
+    //     console.log(strain)
+    // }
 
-    const handleSubmit = e => {
-        e.preventDefault()
+    // const handleSubmit = e => {
+    //     e.preventDefault()
 
-        axiosWithAuth.post('/strains', strain)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(e => console.error(e))
-    }
+    //     axiosWithAuth.post('/strains', strain)
+    //     .then(res => {
+    //         console.log(res)
+    //     })
+    //     .catch(e => console.error(e))
+    // }
     
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
                 <input 
                     type='text'
                     name='user_id'
@@ -46,7 +46,7 @@ const AddStrain = () => {
                 />
 
                 <button>submit</button>
-            </form>
+            </form> */}
         </>
     )
 }

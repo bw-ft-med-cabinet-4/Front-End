@@ -17,6 +17,7 @@ const formSchema = yup.object().shape({
 })
 
 function Login(props) {
+
   const initialFormValues={
     username: '',
     password: '',
@@ -26,6 +27,8 @@ function Login(props) {
     password: '',
   }
   
+
+  // const { values, onInputChange, onSubmitLogin, errors, disabled } = props;
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -44,7 +47,7 @@ useEffect(() => {
 
   const onSubmit = e => {
     e.preventDefault();
-    axios()
+    axios
         .post('https://medcabinetbackend.herokuapp.com/api/login', user)
         .then(res => {
           console.log(res)
@@ -54,6 +57,7 @@ useEffect(() => {
             console.log('The data was not returned', err)
         })
   }
+
 
   const handleChanges = evt => {
 
@@ -132,6 +136,46 @@ useEffect(() => {
       <button onClick={onSubmit} disabled={formDisabled}>
         Log In
       </button>
+  const inputChange = (e) => {
+    setUser({
+      ...user,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
+        <div>
+          {/* {errors.username2} */}
+          <br></br>
+          {/* {errors.password2} */}
+        </div>
+        <img src={logo} />
+        <h1>Log In</h1>
+        <label>
+          Username:&nbsp;
+          <input
+            value={user.username}
+            onChange={inputChange}
+            name="username"
+            type="text"
+          />
+        </label>
+        <label>
+          Password:&nbsp;
+          <input
+            value={user.password}
+            onChange={inputChange}
+            name="password"
+            type="password"
+          />
+        </label>
+        <button type="submit">
+          Log In
+        </button>
+      </form>
+
     </div>
   );
 }

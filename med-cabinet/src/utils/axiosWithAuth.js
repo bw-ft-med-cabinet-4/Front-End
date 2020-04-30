@@ -1,13 +1,10 @@
 import axios from 'axios';
 
-const axiosWithAuth = () => {
-    const token = JSON.parse(localStorage.getItem('token'));
+export const axiosWithAuth = () => {
     return axios.create({
+        baseURL: `https://medcabinetbackend.herokuapp.com/api`,
         headers: {
-            Authorization: token
-        },
-        baseURL: 'https://medcabinetbackend.herokuapp.com/api/'
-    })
-}
-
-export default axiosWithAuth;
+            token: localStorage.getItem('token')
+        }
+    });
+};
