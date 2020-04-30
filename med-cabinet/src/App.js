@@ -13,6 +13,7 @@ import StrainContext from './context/StrainContext';
     import MainNav from './components/menus/MainNav';
     import Login from './components/auth/Login'
     import NewAccount from "./components/auth/NewAccount"
+    import ProtectedRoute from "./components/auth/ProtectedRoute"
     
 
 // component
@@ -22,7 +23,7 @@ const App = () => {
         <StrainContext.Provider value={'test'}>
             <Route path='/' component={MainNav} />
             <Route path='/newaccount' component={NewAccount} />
-            <Route path='/crud' component={Crud} />
+            <ProtectedRoute path='/crud' component={Crud} />
             <Route path='/login' component={Login}/>
         </StrainContext.Provider>
 
