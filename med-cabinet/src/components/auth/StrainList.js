@@ -42,7 +42,10 @@ export const StrainList = () => {
                         <p>CBD: {strain.cbd}</p>
                         <p>THC: {strain.type}</p>
                         <p>Medical Effect: {strain.medical_effect}</p>
-                        <button onClick={() => saveStrain(strain.id)}>Save</button>
+                        <SaveButton onClick={() => {
+                            saveStrain(strain.id);
+                            alert('Strain has been saved to profile.');
+                        }}>Save</SaveButton>
                     </Card>
                 )
             })}
@@ -67,7 +70,6 @@ const Container = styled.div`
 
 const Card = styled.div`
     width: 21.875rem;
-    height: 29.375rem;
     background: #ffffff;
     border: 1px solid #D8D8D8;
     border-radius: 0.3125rem;
@@ -89,5 +91,21 @@ const Card = styled.div`
         color: #444444;
         font-weight: 300;
         margin-top: 1.875rem;
+    }
+`;
+
+const SaveButton = styled.button`
+    margin: 3.125rem 0;
+    width: 6.25rem;
+    height: 3.125rem;
+    border: none;
+    border-radius: 0.3125rem;
+    background: #6C63FF;
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1.2rem;
+
+    &:hover {
+        cursor: pointer;
     }
 `;

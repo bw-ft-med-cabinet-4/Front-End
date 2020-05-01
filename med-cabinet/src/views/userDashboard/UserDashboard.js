@@ -6,7 +6,7 @@ const UserDashboard = () => {
     return (
         <>
             <Container>
-                user dash view
+                <h2>Your Saved Strains</h2>
                 <GetSavedStrains />
             </Container>
         </>
@@ -18,8 +18,13 @@ const Container = styled.div`
     width: 90%;
     max-width: 1400px;
     height: 50rem; // temp
-    background-color: green;
     margin: 0 auto;
+
+    h2 {
+        font-size: 3rem;
+        font-weight: 400;
+        color: #444444;
+    }
 `
 
 export default UserDashboard;
