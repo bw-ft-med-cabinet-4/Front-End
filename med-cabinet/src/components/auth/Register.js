@@ -36,6 +36,7 @@ export default function Register() {
                 e.preventDefault();
                 register(user);
             }}>
+                <h1>Register</h1>
                 <div>
                     <input
                         type="text"

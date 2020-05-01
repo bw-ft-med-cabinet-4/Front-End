@@ -31,6 +31,7 @@ export const StrainList = () => {
 
     return (
         <Container>
+            {strainList.length === 0 && <p>Please register or login to view the list of strains.</p>}
             {strainList.map((strain, index) => {
                 return (
                     <Card key={index} className='cards'>
@@ -66,6 +67,14 @@ const Container = styled.div`
     grid-row-gap: 1rem;
     justify-items: center;
     padding: 3.125rem 0;
+
+    p {
+        font-size: 1rem;
+        color: #444444;
+        font-weight: 300;
+        margin-top: 1.875rem;
+        color: #ffffff;
+    }
 `;
 
 const Card = styled.div`
