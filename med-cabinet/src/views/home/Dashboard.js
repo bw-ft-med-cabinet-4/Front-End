@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import StrainList from '../../components/auth/StrainList';
+import { useHistory } from 'react-router-dom';
 
 // assets
 import Medical from '../../assets/Medical.svg';
 
 const Dashboard = () => {
+
+    const history = useHistory();
+    
     return (
         <>
             <Container>
@@ -13,8 +17,8 @@ const Dashboard = () => {
                     <div className="hero-left">
                         <h2>We Help People Feel Better</h2>
                         <p>Pellentesque venenatis arcu ante, ac rhoncus odio venenatis vitae. Praesent a mattis massa. In quis ligula neque. Suspendisse accumsan tempor risus. Phasellus orci lorem, suscipit quis sem eu, tincidunt imperdiet justo. Quisque fermentum, ligula vel tempus vehicula, enim velit cursus ligula, quis mattis orci felis id ligula.</p>
-                        {!localStorage.getItem('token') && <CTAButton>Register Now</CTAButton>}
-                        {localStorage.getItem('token') && <CTAButton>View Your Strains</CTAButton>}
+                        {!localStorage.getItem('token') && <CTAButton onClick={() => history.push(`/register`)}>Register Now</CTAButton>}
+                        {localStorage.getItem('token') && <CTAButton onClick={() => history.push(`/dashboard`)}>View Your Strains</CTAButton>}
                     </div>
 
                     <div className="hero-right">

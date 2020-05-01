@@ -77,8 +77,9 @@ const ButtonList = styled.div`
     height: 100%;
     display: flex;
     flex-flow: row nowrap;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
+    // background-color: yellow;
 
         a {
             height: 100%;
@@ -100,6 +101,7 @@ const ButtonList = styled.div`
         button:hover {
             background-color: pink;
             transition: 0.25s;
+            cursor: pointer;
         }
 `
 
