@@ -1,5 +1,6 @@
 // react
 import React from 'react';
+import './index.css';
 // router
 import { Route } from 'react-router-dom';
 // styled components
